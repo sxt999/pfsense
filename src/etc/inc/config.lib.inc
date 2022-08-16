@@ -958,7 +958,7 @@ function cleanup_backupcache($lock = false) {
 				unlink($backup);
 				continue;
 			}
-			if ($newxml['revision']['description'] == "") {
+			if (isset($newxml['revision']['description']) && $newxml['revision']['description'] == "") {
 				$newxml['revision']['description'] = "Unknown";
 			}
 			if ($newxml['version'] == "") {

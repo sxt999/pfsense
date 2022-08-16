@@ -95,7 +95,7 @@ function stop_dpinger($gwname = '') {
 function start_dpinger($gateway) {
 	global $g;
 
-	if (!isset($gateway['gwifip'])) {
+	if (!isset($gateway['gwifip']) && $gateway['interface'] !== "l2tp") {
 		return (false);
 	}
 
@@ -116,7 +116,9 @@ function start_dpinger($gateway) {
 	$params  = "-S ";			/* Log warnings via syslog */
 	$params .= "-r 0 ";			/* Disable unused reporting thread */
 	$params .= "-i {$gateway['name']} ";	/* Identifier */
-	$params .= "-B {$gateway['gwifip']} ";	/* Bind src address */
+	if ($gateway['interface'] !== "l2tp") {
+		$params .= "-B {$gateway['gwifip']} ";	/* Bind src address */
+	}
 	$params .= "-p {$pidfile} ";		/* PID filename */
 	$params .= "-u {$socket} ";		/* Status Socket */
 	if (!$gateway['action_disable']) {
@@ -225,6 +227,11 @@ function setup_gateways_monitor() {
 		 */
 		if ($gateway['ipprotocol'] == "inet") { // This is an IPv4 gateway...
 			$gwifip = find_interface_ip($gateway['interface'], true);
+			if ($gateway['interface'] === "l2tp") {
+				$monitor_ips[] = $gateway['monitor'];
+				$gateways_arr[$gwname]['enable_dpinger'] = true;
+				$gateways_arr[$gwname]['gwifip'] = $gwifip;
+			}
 			if (!is_ipaddrv4($gwifip)) {
 				continue; //Skip this target
 			}
@@ -644,17 +651,19 @@ function return_gateways_array($disabled = false, $localhost = false, $inactive 
 			}
 
 			if (empty($config['interfaces'][$gateway['interface']])) {
-				if ($inactive === false) {
+				if ($inactive === false && $gateway['interface'] !== "l2tp") {
 					continue;
 				} else {
 					$gateway['inactive'] = true;
 				}
 			}
-			$wancfg = $config['interfaces'][$gateway['interface']];
+			if ($gateway['interface'] !== "l2tp") {
+				$wancfg = $config['interfaces'][$gateway['interface']];
 
-			/* skip disabled interfaces */
-			if ($disabled === false && (!isset($wancfg['enable']))) {
-				continue;
+				/* skip disabled interfaces */
+				if ($disabled === false && (!isset($wancfg['enable']))) {
+					continue;
+				}
 			}
 
 			/* if the gateway is dynamic and we can find the IPv4, Great! */
