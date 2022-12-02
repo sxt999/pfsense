@@ -1552,7 +1552,7 @@ function ipsec_setup_gwifs($gateways_status = false) {
 			/* see if this tunnel has a hostname for the remote-gateway. If so,
 			   try to resolve it now and add it to the list for filterdns */
 			$rg = $ph1ent['remote-gateway'];
-			if (!is_ipaddr($rg)) {
+			if (!is_ipaddr($rg) && ($rg !== '0.0.0.0/0') && ($rg !== '::/0')) {
 				$filterdns_list[] = "{$rg}";
 				add_hostname_to_watch($rg);
 				if (!platform_booting()) {
@@ -2719,7 +2719,9 @@ function ipsec_setup_tunnels($gateways_status = false) {
 				}
 
 				if (!isset($ph2ent['mobile'])) {
-					$remote_ts = $remote_spec;
+					if (($remote_spec !== '0.0.0.0/0') && ($remote_spec !== '::/0')) {
+						$remote_ts = $remote_spec;
+					}
 				}
 			}
 

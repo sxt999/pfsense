@@ -515,7 +515,7 @@ rrset-cache-size: {$rrset_cache_size}m
 {$optimization['rrset_cache_slabs']}
 {$optimization['infra_cache_slabs']}
 {$optimization['key_cache_slabs']}
-outgoing-range: 4096
+outgoing-range: 8192
 {$optimization['so_rcvbuf']}
 {$anchor_file}
 prefetch: {$prefetch}

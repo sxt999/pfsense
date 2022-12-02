@@ -313,15 +313,15 @@ if ($_POST['save']) {
 		$input_errors[] = gettext("Invalid Child SA Close Action.");
 	}
 
-	if ($pconfig['remotegw']) {
-		if (!is_ipaddr($pconfig['remotegw']) && !is_domain($pconfig['remotegw'])) {
-			$input_errors[] = gettext("A valid remote gateway address or host name must be specified.");
-		} elseif (is_ipaddrv4($pconfig['remotegw']) && ($pconfig['protocol'] == "inet6")) {
-			$input_errors[] = gettext("A valid remote gateway IPv4 address must be specified or protocol needs to be changed to IPv6");
-		} elseif (is_ipaddrv6($pconfig['remotegw']) && ($pconfig['protocol'] == "inet")) {
-			$input_errors[] = gettext("A valid remote gateway IPv6 address must be specified or protocol needs to be changed to IPv4");
-		}
-	}
+	// if ($pconfig['remotegw']) {
+	// 	if (!is_ipaddr($pconfig['remotegw']) && !is_domain($pconfig['remotegw'])) {
+	// 		$input_errors[] = gettext("A valid remote gateway address or host name must be specified.");
+	// 	} elseif (is_ipaddrv4($pconfig['remotegw']) && ($pconfig['protocol'] == "inet6")) {
+	// 		$input_errors[] = gettext("A valid remote gateway IPv4 address must be specified or protocol needs to be changed to IPv6");
+	// 	} elseif (is_ipaddrv6($pconfig['remotegw']) && ($pconfig['protocol'] == "inet")) {
+	// 		$input_errors[] = gettext("A valid remote gateway IPv6 address must be specified or protocol needs to be changed to IPv4");
+	// 	}
+	// }
 
 	if ($_POST['ikeport']) {
 		if (!is_port($pconfig['ikeport'])) {
@@ -348,7 +348,7 @@ if ($_POST['save']) {
 			if ($p1['ikeid'] != $ph1tmp['ikeid']) {
 				$tremotegw = $pconfig['remotegw'];
 				if (($ph1tmp['remote-gateway'] == $tremotegw) && ($ph1tmp['remote-gateway'] != '0.0.0.0') &&
-				    ($ph1tmp['remote-gateway'] != '::') && !isset($ph1tmp['disabled']) &&
+				    ($ph1tmp['remote-gateway'] != '::') && !isset($ph1tmp['disabled']) && ($ph1tmp['remote-gateway'] != '::/0') && ($ph1tmp['remote-gateway'] != '0.0.0.0/0') &&
 				    (!isset($pconfig['gw_duplicates']) || !isset($ph1tmp['gw_duplicates']) ||
 				    !is_ipaddr($tremotegw))) {
 					$input_errors[] = sprintf(gettext('The remote gateway "%1$s" is already used by phase1 "%2$s".'), $tremotegw, $ph1tmp['descr']);
@@ -358,6 +358,16 @@ if ($_POST['save']) {
 	}
 
 	if (($pconfig['remotegw'] == '0.0.0.0') || ($pconfig['remotegw'] == '::')) {
+		if ($pconfig['startaction'] != 'none') {
+			$input_errors[] = gettext('The remote gateway "0.0.0.0" or "::" address can only be used with a Child SA Start Action of "None (Responder Only)".');
+		}
+		if ($pconfig['peerid_type'] == "peeraddress") {
+			$input_errors[] = gettext('The remote gateway "0.0.0.0" or "::" address can not be used with IP address peer identifier.');
+		}
+
+	}
+
+	if (($pconfig['remotegw'] == '0.0.0.0/0') || ($pconfig['remotegw'] == '::/0')) {
 		if ($pconfig['startaction'] != 'none') {
 			$input_errors[] = gettext('The remote gateway "0.0.0.0" or "::" address can only be used with a Child SA Start Action of "None (Responder Only)".');
 		}

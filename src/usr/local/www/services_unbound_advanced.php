@@ -136,7 +136,7 @@ if ($_POST) {
 		if (isset($_POST['edns_buffer_size']) && !array_key_exists($_POST['edns_buffer_size'], $unbound_edns_sizes)) {
 			$input_errors[] = gettext("A valid value must be specified for EDNS Buffer Size.");
 		}
-		if (isset($_POST['num_queries_per_thread']) && !in_array($_POST['num_queries_per_thread'], array('512', '1024', '2048'), true)) {
+		if (isset($_POST['num_queries_per_thread']) && !in_array($_POST['num_queries_per_thread'], array('512', '1024', '2048', '4096'), true)) {
 			$input_errors[] = gettext("A valid value must be specified for Number of Queries per Thread.");
 		}
 		if (isset($_POST['jostle_timeout']) && !in_array($_POST['jostle_timeout'], array('100', '200', '500', '1000'), true)) {
@@ -395,7 +395,7 @@ $section->addInput(new Form_Select(
 	'num_queries_per_thread',
 	'Number of Queries per Thread',
 	$pconfig['num_queries_per_thread'],
-	array_combine(array("512", "1024", "2048"), array("512", "1024", "2048"))
+	array_combine(array("512", "1024", "2048", "4096"), array("512", "1024", "2048", "4096"))
 ))->setHelp('The number of queries that every thread will service simultaneously. If more queries arrive that need to be serviced, and no queries can be jostled, then these queries are dropped.');
 
 $section->addInput(new Form_Select(
