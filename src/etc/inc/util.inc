@@ -2368,7 +2368,7 @@ function start_devd() {
 	}
 
 	/* Use the undocumented -q options of devd to quiet its log spamming */
-	$_gb = exec("/sbin/devd -q -f /etc/{$g['product_name']}-devd.conf");
+	$_gb = exec("/sbin/devd -q -f /etc/pfSense-devd.conf");
 	sleep(1);
 	unset($_gb);
 }

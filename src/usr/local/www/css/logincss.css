@@ -1,0 +1,45 @@
+.background {
+  background: white;
+}
+
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 300px;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  box-shadow: 0 0 8px #bfbfbf;
+  background: white;
+  padding: 60px;
+}
+.card .form-item {
+  margin-bottom: 21px;
+  width: 100%;
+}
+.card .login-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #d2d2d2;
+  margin-top: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  outline: none;
+  transition: 0.2s;
+}
+.card .login-input:focus {
+  border: 1px solid #67c5ff;
+  box-shadow: 0 0 2px #a4ffce;
+  transition: 0.2s;
+}
+.card .login-btn {
+  width: 100%;
+  background: #635cff;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=logincss.css.map */

@@ -24,7 +24,7 @@
 require_once("guiconfig.inc");
 
 # Docs redirect base URL
-$redirect_base = "https://docs.netgate.com/pfsense/help";
+$redirect_base = "http://www.sftel.com.cn";
 
 $pagename = "";
 /* Check for parameter "page". */
@@ -72,7 +72,7 @@ if (strlen($pagename) > 0) {
 	$pagename = urlencode(str_replace(array('%', ':', '..'), '', $pagename));
 
 	/* Redirect to help page. */
-	header("Location: {$redirect_base}/{$pagename}");
+	header("Location: {$redirect_base}");
 }
 
 // No page name was determined, so show a message.

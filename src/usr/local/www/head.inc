@@ -251,11 +251,11 @@ $system_menu[] = array(gettext("Update"), "/pkg_mgr_install.php?id=firmware");
 $system_menu[] = array(gettext("General Setup"), "/system.php");
 $system_menu[] = array(gettext("High Avail. Sync"), "/system_hasync.php");
 $system_menu[] = array(gettext("Package Manager"), "/pkg_mgr_installed.php");
-$system_menu[] = array(gettext("Setup Wizard"), "/wizard.php?xml=setup_wizard.xml");
+//$system_menu[] = array(gettext("Setup Wizard"), "/wizard.php?xml=setup_wizard.xml");
 $system_menu[] = array(gettext("Routing"), "/system_gateways.php");
 $system_menu[] = array(gettext("Cert. Manager"), "/system_camanager.php");
 if  (strpos($g['product_label'], 'Plus') === false) {
-	$system_menu[] = array(gettext("Register"), "/system_register.php");
+	//$system_menu[] = array(gettext("Register"), "/system_register.php");
 }
 
 if (!isAllowedPage("system_usermanager.php")) {
@@ -268,7 +268,7 @@ if ($user_settings['customsettings'] && isAllowedPage("system_user_settings.php"
 	$system_menu[] = array(gettext("User Settings"), "/system_user_settings.php");
 }
 
-$system_menu = msort(array_merge($system_menu, return_ext_menu("System")), 0);
+//$system_menu = msort(array_merge($system_menu, return_ext_menu("System")), 0);
 
 // Interfaces
 // NOTE:
@@ -428,19 +428,19 @@ $diagnostics_menu = msort(array_merge($diagnostics_menu, return_ext_menu("Diagno
 
 if (!$g['disablehelpmenu']) {
 	$help_menu = array();
-	$help_menu[] = array(gettext("About this Page"), $helpurl);
+	//$help_menu[] = array(gettext("About this Page"), $helpurl);
 	if ($g['product_name'] == "pfSense") {
 		$help_menu[] = array(gettext("Bug Database"), "https://redirects.netgate.com/issues");
 	}
 
-	$help_menu[] = array(gettext("User Forum"), "https://redirects.netgate.com/forum");
-	$help_menu[] = array(gettext("Documentation"), "https://redirects.netgate.com/docs");
-	$help_menu[] = array(gettext("Paid Support"), "https://redirects.netgate.com/support");
-	$help_menu[] = array(gettext("pfSense Book"), "https://redirects.netgate.com/book");
-	$help_menu[] = array(gettext("FreeBSD Handbook"), "https://redirects.netgate.com/fbsdhandbook");
-	$help_menu[] = array(gettext("User survey"), "https://redirects.netgate.com/survey_1");
+	//$help_menu[] = array(gettext("User Forum"), "https://redirects.netgate.com/forum");
+	//$help_menu[] = array(gettext("Documentation"), "https://redirects.netgate.com/docs");
+	$help_menu[] = array(gettext("Paid Support"), "http://www.sftel.com.cn/");
+	//$help_menu[] = array(gettext("pfSense Book"), "https://redirects.netgate.com/book");
+	//$help_menu[] = array(gettext("FreeBSD Handbook"), "https://redirects.netgate.com/fbsdhandbook");
+	//$help_menu[] = array(gettext("User survey"), "https://redirects.netgate.com/survey_1");
 	if  (strpos($g['product_label'], 'Plus') === false) {
-		$help_menu[] = array(gettext("Upgrade to pfSense Plus"), "https://redirects.netgate.com/upgrade");
+		//$help_menu[] = array(gettext("Upgrade to pfSense Plus"), "https://redirects.netgate.com/upgrade");
 	}
 	$help_menu = msort(array_merge($help_menu, return_ext_menu("Help")), 0);
 }
@@ -483,7 +483,7 @@ if (are_notices_pending()) {
 			</button>
 			<a class="navbar-brand" href="/">
 				<?php include("/usr/local/www/logo.svg"); ?>
-				<span style="color:white;font-size:.5em;text-transform:uppercase;letter-spacing:1px;">Community Edition</span>
+				<span style="color:white;font-size:.5em;text-transform:uppercase;letter-spacing:1px;">Freeyou Edge Advanced</span>
 			</a>
 		</div>
 		<div class="collapse navbar-collapse" id="pf-navbar">

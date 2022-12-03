@@ -8,7 +8,7 @@
  * Copyright (c) 2006 Paul Taylor <paultaylor@winn-dixie.com>
  * Copyright (c) 2004-2013 BSD Perimeter
  * Copyright (c) 2013-2016 Electric Sheep Fencing
- * Copyright (c) 2014-2022 Rubicon Communications, LLC (Netgate)
+ * Copyright (c) 2014-2021 Rubicon Communications, LLC (Netgate)
  * All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -289,7 +289,9 @@ function display_login_form() {
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" type="text/css">
 	    <link rel="stylesheet" href="/css/login.css?v=<?=filemtime('/usr/local/www/css/login.css')?>" type="text/css">
-		<title><?=$login_title; ?></title>
+	    <link rel="stylesheet" href="/css/normalize.css">
+    	<link rel="stylesheet" href="/css/logincss.css">
+		<title>飞邮 FEA</title>
 		<script type="text/javascript">
 			//<![CDATA{
 			var events = events || [];
@@ -298,33 +300,22 @@ function display_login_form() {
 	</head>
 
 	<body id="login" >
-		<div id="total">
-			<header>
-				<div id="headerrow">
-					<div class="row">
-						<!-- Header left logo box -->
-						<div class="col-sm-4">
-							<div id="logodiv" style="text-align:center" class="nowarning">
-								<?php include("/usr/local/www/logo.svg"); ?>
-							</div>
-						</div>
+		<svg width="100%" height="639" viewBox="0 0 1440 639" fill="none" xmlns="http://www.w3.org/2000/svg">
+		    <path d="M21 606.5V566.5L180 533V573L21 606.5Z" fill="#81E9FF"/>
+		    <path d="M0 639V599.5L314.5 532V572L0 639Z" fill="#0C00FA" fill-opacity="0.5"/>
+		    <path d="M1126 362V322.5L1440.5 255V295L1126 362Z" fill="#0C00FA" fill-opacity="0.5"/>
+		  </svg>
 
-						<!-- Header center message box -->
-						<div class="col-sm-4 nowarning msgbox text-center text-danger">
-<?php
-						if (!empty($_POST['usernamefld'])) {
-							print("<h4>" . $_SESSION['Login_Error'] . "</h4>");
-						}
-?>
-						</div>
-
-						<!-- Header right message box (hostname or msg)-->
-						<div class="col-sm-4 nowarning msgbox text-center">
-							<span id="hostspan">
-								<a><h4><?=$loginbannerstr?></h4></a>
-							</span>
-						</div>
-					</div>
+		  <div class="card">
+			<h1>登录</h1>
+			    <form method="post" <?=$loginautocomplete?> enctype="application/x-www-form-urlencoded">
+			        <div class="form-item">
+			            <input class="login-input" type="text" name="usernamefld" id="usernamefld" placeholder="用户名"/>
+			        </div>
+			        <div class="form-item">
+			            <input class="login-input" type="password" name="passwordfld" id="passwordfld" placeholder="密码"/>
+			        </div>
+			        <div class="form-item" style="color: rgb(230, 40, 10);">
 <?php
 	if ($warnclass == "pagebodywarn") {
 ?>
@@ -339,34 +330,18 @@ function display_login_form() {
 <?php
 	}
 ?>
-	            </div>
-	        </header>
 
-	        <div style="background: <?=$logincssfile?>;" class="<?=$warnclass?>">
-	        	<div class="col-sm-4"></div>
-
-	        	<div class="col-sm-4 offset-md-4 logoCol">
-					<div class="loginCont center-block">
-		                <form method="post" <?=$loginautocomplete?> class="login">
-			                <p class="form-title">Sign In</p>
-			                <input name="usernamefld" id="usernamefld" type="text" placeholder="Username" autocorrect="off" autocapitalize="none"/>
-			                <input name="passwordfld" id="passwordfld" type="password" placeholder="Password" />
-			                <input type="submit" name="login" value="Sign In" class="btn btn-success btn-sm" />
-		                </form>
-					</div>
-	            </div>
-
-	        	<div class="col-sm-4"></div>
-	        </div>
-
-	        <footer id="3">
-	            <div id="footertext">
-					<p class="text-muted">
-						<?=print_credit()?>
-					</p>
-	            </div>
-	        </footer>
-	    </div>
+<?php
+						if (!empty($_POST['usernamefld'])) {
+							print("<h4>" . $_SESSION['Login_Error'] . "</h4>");
+						}
+?>
+			        </div>
+			        <div class="form-item">
+			            <input type="submit" name="login" class="login-btn" type="submit" value="登录" />
+			        </div>
+			    </form>
+			</div>
 
 		<script type="text/javascript">
 		//<![CDATA[

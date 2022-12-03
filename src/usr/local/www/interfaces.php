@@ -1967,7 +1967,7 @@ $section->addInput(new Form_Input(
 	'*Description',
 	'text',
 	$pconfig['descr']
-))->setHelp('Enter a description (name) for the interface here.');
+))->setReadonly();
 
 if ($show_address_controls) {
 	$section->addInput(new Form_Select(

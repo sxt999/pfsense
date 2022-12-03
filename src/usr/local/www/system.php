@@ -190,7 +190,7 @@ if ($_POST) {
 	if ($_POST['domain'] && (!is_domain($_POST['domain'], false, false))) {
 		$input_errors[] = gettext("The domain may only contain the characters a-z, 0-9, '-' and '.', and it cannot start with '.' or '-'.");
 	}
-	validate_webguicss_field($input_errors, $_POST['webguicss']);
+	// validate_webguicss_field($input_errors, $_POST['webguicss']);
 	validate_webguifixedmenu_field($input_errors, $_POST['webguifixedmenu']);
 	validate_webguihostnamemenu_field($input_errors, $_POST['webguihostnamemenu']);
 	validate_dashboardcolumns_field($input_errors, $_POST['dashboardcolumns']);
@@ -674,7 +674,7 @@ $form->add($section);
 
 $section = new Form_Section('webConfigurator');
 
-gen_webguicss_field($section, $pconfig['webguicss']);
+//gen_webguicss_field($section, $pconfig['webguicss']);
 gen_webguifixedmenu_field($section, $pconfig['webguifixedmenu']);
 gen_webguihostnamemenu_field($section, $pconfig['webguihostnamemenu']);
 gen_dashboardcolumns_field($section, $pconfig['dashboardcolumns']);
