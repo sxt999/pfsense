@@ -4,7 +4,7 @@
 	<lastchange></lastchange>
 	<system>
 		<optimization>normal</optimization>
-		<hostname>pfSense</hostname>
+		<hostname>FEA</hostname>
 		<domain>home.arpa</domain>
 		<dnsserver></dnsserver>
 		<dnsallowoverride></dnsallowoverride>
@@ -28,7 +28,7 @@
 			<descr><![CDATA[System Administrator]]></descr>
 			<scope>system</scope>
 			<groupname>admins</groupname>
-			<sha512-hash>$6$11c32b48b6beed58$pRfzPhqaAeAxQhkz.6N4TbOeAFe9/oau7UGKzNo9iZA91fDTuUNeIcPvnyz72SpMJ4wrWMcHH9t7jY3QIQPEQ.</sha512-hash>
+			<sha512-hash>$6$c27b6912038126ba$.1/pPgTnJffDiZaU6y/aIJqJnA6zYxiCwQwPMItPn3G0h9aAMppPpb7mRYlrjG363lKVt30c5/d3j0VI2uU1S/</sha512-hash>
 			<uid>0</uid>
 			<priv>user-shell-access</priv>
 		</user>
@@ -36,7 +36,9 @@
 		<nextgid>2000</nextgid>
 		<timeservers>2.pfsense.pool.ntp.org</timeservers>
 		<webgui>
-			<protocol>https</protocol>
+			<protocol>http</protocol>
+			<port>3100</port>
+			<nohttpreferercheck></nohttpreferercheck>
 			<loginautocomplete></loginautocomplete>
 		</webgui>
 		<disablenatreflection>yes</disablenatreflection>
@@ -51,6 +53,11 @@
 			<interval>monthly</interval>
 		</bogons>
 		<hn_altq_enable></hn_altq_enable>
+		<ssh>
+			<enable>enabled</enable>
+		</ssh>
+		<language>zh_Hans_CN</language>
+		<timezone>Asia/Shanghai</timezone>
 	</system>
 	<interfaces>
 		<wan>
