@@ -186,33 +186,8 @@ if (file_exists("/usr/sbin/swapinfo")) {
 
 ## If it is the first time webConfigurator has been
 ## accessed since initial install show this stuff.
-if (file_exists('/conf/trigger_initial_wizard')) {
 ?>
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link rel="stylesheet" href="/css/pfSense.css" />
-		<title><?=$g['product_label']?>.home.arpa - <?=$g['product_label']?> first time setup</title>
-		<!-- <meta http-equiv="refresh" content="1;url=wizard.php?xml=setup_wizard.xml" /> -->
-	</head>
-	<body id="loading-wizard" class="no-menu">
-		<div id="jumbotron">
-			<div class="container">
-				<div class="col-sm-offset-3 col-sm-6 col-xs-12">
-					<font color="white">
-					<p><h3><?=sprintf(gettext("Welcome to %s!") . "\n", $g['product_label'])?></h3></p>
-					<p><?=gettext("One moment while the initial setup wizard starts.")?></p>
-					<p><?=gettext("Embedded platform users: Please be patient, the wizard takes a little longer to run than the normal GUI.")?></p>
-					<p><?=sprintf(gettext("To bypass the wizard, click on the FEA logo on the initial page."), $g['product_label'])?></p>
-					</font>
-				</div>
-			</div>
-		</div>
-	</body>
-</html>
 <?php
-	exit;
-}
 
 ##build widget saved list information
 if ($user_settings['widgets']['sequence'] != "") {
@@ -449,10 +424,10 @@ foreach ($widgets as $widgetkey => $widgetconfig) {
  */
 require_once("copyget.inc");
 
-if (file_exists("{$g['cf_conf_path']}/copynotice_display")) {
-	require_once("copynotice.inc");
-	@unlink("{$g['cf_conf_path']}/copynotice_display");
-}
+// if (file_exists("{$g['cf_conf_path']}/copynotice_display")) {
+// 	require_once("copynotice.inc");
+// 	@unlink("{$g['cf_conf_path']}/copynotice_display");
+// }
 
 /*
  * Import the modal form used to display any HTML text a package may want to display
