@@ -203,7 +203,7 @@ if (file_exists('/conf/trigger_initial_wizard')) {
 					<p><h3><?=sprintf(gettext("Welcome to %s!") . "\n", $g['product_label'])?></h3></p>
 					<p><?=gettext("One moment while the initial setup wizard starts.")?></p>
 					<p><?=gettext("Embedded platform users: Please be patient, the wizard takes a little longer to run than the normal GUI.")?></p>
-					<p><?=sprintf(gettext("To bypass the wizard, click on the %s logo on the initial page."), $g['product_label'])?></p>
+					<p><?=sprintf(gettext("To bypass the wizard, click on the FEA logo on the initial page."), $g['product_label'])?></p>
 					</font>
 				</div>
 			</div>
