@@ -193,7 +193,7 @@ if (file_exists('/conf/trigger_initial_wizard')) {
 	<head>
 		<link rel="stylesheet" href="/css/pfSense.css" />
 		<title><?=$g['product_label']?>.home.arpa - <?=$g['product_label']?> first time setup</title>
-		<meta http-equiv="refresh" content="1;url=wizard.php?xml=setup_wizard.xml" />
+		<!-- <meta http-equiv="refresh" content="1;url=wizard.php?xml=setup_wizard.xml" /> -->
 	</head>
 	<body id="loading-wizard" class="no-menu">
 		<div id="jumbotron">

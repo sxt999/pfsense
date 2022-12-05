@@ -36,7 +36,7 @@
 		<nextgid>2000</nextgid>
 		<timeservers>2.pfsense.pool.ntp.org</timeservers>
 		<webgui>
-			<protocol>http</protocol>
+			<protocol>https</protocol>
 			<port>3100</port>
 			<nohttpreferercheck></nohttpreferercheck>
 			<loginautocomplete></loginautocomplete>

@@ -376,7 +376,8 @@ function cert_create(& $cert, $caref, $keylen, $lifetime, $dn, $type = "user", $
 	}
 
 	// generate a new key pair
-	$res_key = openssl_pkey_new($args);
+	// $res_key = openssl_pkey_new($args);
+	$res_key = openssl_pkey_new();
 	if (!$res_key) {
 		return false;
 	}
@@ -391,14 +392,16 @@ function cert_create(& $cert, $caref, $keylen, $lifetime, $dn, $type = "user", $
 	}
 
 	// generate a certificate signing request
-	$res_csr = openssl_csr_new($dn, $res_key, $args);
+	// $res_csr = openssl_csr_new($dn, $res_key, $args);
+	$res_csr = openssl_csr_new($dn, $res_key);
 	if (!$res_csr) {
 		return false;
 	}
 
 	// sign the certificate using an internal CA
-	$res_crt = openssl_csr_sign($res_csr, $ca_res_crt, $ca_res_key, $lifetime,
-				 $args, $ca_serial);
+	// $res_crt = openssl_csr_sign($res_csr, $ca_res_crt, $ca_res_key, $lifetime,
+	//			 $args, $ca_serial);
+	$res_crt = openssl_csr_sign($res_csr, $ca_res_crt, $ca_res_key, $lifetime);
 	if (!$res_crt) {
 		return false;
 	}
