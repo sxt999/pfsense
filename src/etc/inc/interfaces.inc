@@ -7468,6 +7468,7 @@ function build_ppps_link_list() {
 		$linklist['list'] = get_serial_ports();
 	} else {
 		$iflist = get_interface_ports();
+		$pppoe_list = get_pppoe_interface_list();
 
 		$viplist = array();
 		$carplist = get_configured_vip_list_with_descr('all', VIP_CARP);
@@ -7476,7 +7477,7 @@ function build_ppps_link_list() {
 			$viplist[$vid] = "{$vaddr} (vhid: {$vip['vhid']})";
 		}
 
-		$linklist['list'] = array_merge($iflist, $viplist);
+		$linklist['list'] = array_merge($iflist, $viplist, $pppoe_list);
 
 		// The members of a LAGG cannot be assigned, used in VLANs, QinQ, or PPP.
 		$lagglist = get_lagg_interface_list();

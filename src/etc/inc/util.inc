@@ -1752,6 +1752,20 @@ function get_lagg_interface_list() {
 	return ($plist);
 }
 
+function get_pppoe_interface_list() {
+	global $config;
+	$plist = array();
+	if (isset($config['ppps']) && is_array($config['ppps'])) {
+		foreach ($config['ppps']['ppp'] as $ppp) {
+			if ($ppp['type'] == "pppoe") {
+				$pppoe_iface = $ppp['if'];
+				$plist[$ppp['if']] = "{$pppoe_iface}" . "-" . "PPPoE[{$pppoe_iface}]";
+			}
+		}
+	}
+	return ($plist);
+}
+
 /****f* util/log_error
 * NAME
 *   log_error  - Sends a string to syslog.
